@@ -1,5 +1,5 @@
 #include<stdio.h>
-
+#include<stdlib.h>
 
 void printArray(int arr[], int arr_size) {
 	int i;
@@ -9,9 +9,9 @@ void printArray(int arr[], int arr_size) {
 	printf("\n");
 }
 int merge(int arr[], int left_index, int middle_index, int right_index) {
-	
 	//Initialize left and right arrays based on the number of elements that were passed on.
 	int left_size = middle_index - left_index + 1;
+
 	int right_size = right_index - middle_index;
 
 	int L[left_size], R[right_size];
@@ -75,9 +75,23 @@ int mergeSort(int arr[], int left_index, int right_index) {
 
 
 int main() {
-	int arr[] = {8,7,6,5,4,2,1,3};
-	int arr_size = sizeof(arr) / sizeof(arr[0]); 
-	printArray(arr, arr_size);
+	int size;
+	printf("Enter size of array: ");
+	scanf("%d", &size);
 
-	mergeSort(arr, 0, arr_size-1);
+	int *arr;
+	arr = (int *)malloc(size*sizeof(int));
+	int i;
+	for(i=0; i < size; i++) {
+		printf("Enter number: ");
+		scanf("%d", &arr[i]);
+	}
+	// int arr[] = {8,7,6,5,4,2,1,3};
+	// int arr_size = sizeof(arr) / sizeof(arr[0]); 
+	printArray(arr, size);
+
+	mergeSort(arr, 0, size-1);
+
+	printf("Final:\n");
+	printArray(arr, size);
 }
